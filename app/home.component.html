@@ -1,0 +1,71 @@
+<div class="card">
+	<h5 class="card-header">Current Users ({{users?.length}})</h5>
+	<div class="card-block">
+		<table class="table table-bordered table-striped">
+			<thead class="thead-default">
+				<tr>
+					<th>Name</th>
+					<th>Username*</th>
+					<th>Password</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="users.length === 0">
+				<tr><td colspan="4">There are no users in the DB. Add a new user below.</td></tr>	
+			</tbody>
+			<tbody *ngIf="!isEditing">
+				<tr *ngFor="let user of users">
+					<td>{{user.name}}</td>
+					<td>{{user.username}}</td>
+					<td>{{user.password}}</td>
+					<td>
+						<button class="btn btn-sm btn-warning" (click)="enableEditing(user)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="submitRemove(user)"><i class="fa fa-trash"></i> Delete</button>
+					</td>
+				</tr>	
+			</tbody>
+			<tbody *ngIf="isEditing">
+				<tr>
+					<td colspan="4">
+						<form class="form-inline" #form="ngForm" (ngSubmit)="submitEdit(user)" style="display:inline">
+							<div class="form-group">
+							    <input class="form-control" type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" name="uname" [(ngModel)]="user.username" placeholder="Username" required>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="password" name="pwd" [(ngModel)]="user.password" placeholder="Weight" required>
+							</div>
+							<button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+						</form>
+						<button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<strong>Message:</strong> {{infoMsg.body}}
+		</div>
+	</div>
+</div>
+<div class="card" *ngIf="!isEditing">
+	<h5 class="card-header">Add new user</h5>
+	<div class="card-block">
+		<form class="form-inline" [formGroup]="addUserForm" (ngSubmit)="submitAdd()" style="text-align:center">
+			<div class="form-group">
+			    <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="username" formControlName="username" placeholder="Username">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="password" name="password" formControlName="password" placeholder="Password">
+			</div>
+			<button class="btn btn-primary" type="submit" [disabled]="!addUserForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+		</form>
+	</div>
+</div>
+

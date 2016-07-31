@@ -1,0 +1,45 @@
+<style type="text/css">
+	*{ 
+		font-family: 'Open Sans', sans-serif;
+		margin: 0; padding: 0;
+	}
+	body {margin: 0; padding: 0;}
+	h1{
+		text-align: center;
+	    background: black;
+	    color: white;
+	    padding: 50px;
+	    text-shadow: 0 0 15px #e66b13;
+	}
+	.container {
+		margin: 0 auto;
+	}
+	.label-class {
+		margin: 20px 0;
+		padding-bottom: 5px;
+		border-bottom: 1px solid black;
+		width: 100%;
+	}
+	.button-style {padding: 6px 20; margin: 21px 0;}
+</style>
+
+<h1>Login Form</h1>
+<div class="container">
+	<form (ngSubmit)="formSubmit()">
+		<div class="form-group">
+			<label class="label-class" for="uname">Username</label>
+			<input type="text" name="username" class="form-control" id="uname" [(ngModel)]="user.username">
+		</div>
+		<div class="form-group">
+			<label class="label-class" for="pwd">Password</label>
+			<input type="text" name="password" class="form-control" id="pwd" [(ngModel)]="user.password">
+		</div>
+		<button type="submit" class="btn btn-default button-style" >Login</button>
+	</form>
+</div>
+<div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<strong>Message:</strong> {{infoMsg.body}}
+</div>
