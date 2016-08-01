@@ -19,21 +19,24 @@ export class SigninComponent {
 	formSubmit() {
 		this.http.post('/login', JSON.stringify(this.user) , this.options).subscribe(
 			res => {
-
 				if (res.json() != null) {
+					this.sendInfoMsg("User exists. Redirecting.", "success");
 					console.log("User exists! Yaaay!");
 					localStorage.setItem('user', JSON.stringify(res.json())) ;
-					this.sendInfoMsg("User exists.", "success");
 					this._router.navigate(['/dashboard']);
-				} else {
-					console.log("User does not exist. Please go away.");
-					this.sendInfoMsg("User does not exists.", "danger");
-				}
-
+				} 
 			},
 			error => {
-				console.log("There was an error finding the user. Please try again later.");
-				this.sendInfoMsg("Error finding user.", "danger");
+				console.log("Error response for login.");
+				if (error.status == 400) {
+					this.sendInfoMsg("Incorrect password.", "danger");
+				}
+				if (error.status == 401) {
+					this.sendInfoMsg("Username does not exist.", "danger");
+				}
+				if (error.status == 500) {
+					this.sendInfoMsg("Error finding user. Try again.", "danger");
+				}
 			}
 		)
 	}

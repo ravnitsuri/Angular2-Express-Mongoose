@@ -57,9 +57,17 @@ router.post('/user', function(req, res) {
 router.post('/login', function(req,res){
     console.log("req.body" , req.body)
     // var user = JSON.parse(req.body);
-    User.findOne(req.body , function(err, data) {
-        if (err) return console.error (err) ;
-        res.json(data);
+    User.findOne({username: req.body.username} , function(err, data) {
+        if (err) return res.status(500).send("Error finding user")
+        // res.json(data);
+        if (!data || data.length < 0) {
+            return res.status(401).send("Username does not exist")
+        }
+        if (data.password != req.body.password) {
+            return res.status(400).send("Incorrect password")
+        } else {
+            res.status(200).json(data);
+        }
     })
 });
 
