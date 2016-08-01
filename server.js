@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/angular2');
+mongoose.connect('mongodb://localhost:27017/angular2app');
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -31,8 +31,8 @@ db.once('open', function() {
         res.sendFile(__dirname + '/public/index.html');
     });
 
-    app.listen(3000, function() {
-        console.log('Angular app listening on port 3000');
+    app.listen(4017, function() {
+        console.log('Angular app listening on port 4017');
     });
 });
 
