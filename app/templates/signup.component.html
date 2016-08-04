@@ -1,0 +1,34 @@
+<div class="signupBackground">
+    <div class="signupContainer">
+        <div class="signuplogo">
+            <div class="logoImage"><img src="./app/images/logo.png" width="250px" height="69px"></div>
+        </div>
+        <div class="signupGroup">
+            <div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
+                <strong>Message:</strong> {{infoMsg.body}}
+            </div>
+            <form #heroForm="ngForm" (ngSubmit)="submitAdd()">
+                <div class="form-group">
+                    <label>Username*</label>
+                    <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label>Password*</label>
+                    <input class="form-control" type="password" name="password" [(ngModel)]="user.password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label>Full name</label>
+                    <input class="form-control" type="text" name="name" [(ngModel)]="user.name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <div class="left">
+                        <span>Already a member? <a [routerLink]="['/']">Log in</a></span>
+                    </div>
+                    <div class="right">
+                        <button class="btn btn-primary" type="submit" [disabled]="!heroForm.form.valid">Sign up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

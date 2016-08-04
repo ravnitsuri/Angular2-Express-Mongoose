@@ -1,0 +1,52 @@
+<style type="text/css">
+	.form-group {font-size: 14px; margin-left: 40px; margin-top: 20px;}
+	.label-container {width: 400px; display: inline-block; font-weight: bold;}
+	.info-container {display: inline-block;}
+</style>
+
+
+
+<div class="header">
+    <img src="./app/images/logowhite.png" align='left' style="padding-top: 21px ; padding-left: 20px">
+    <ul class="header-list">
+        <li>
+            <div class="header-buttons-2"><a style="cursor: pointer;">Welcome Admin</a></div>
+        </li>
+        <li>
+            <div class="header-buttons-2"><a style="cursor: pointer;" (click)="logout()">LOGOUT</a></div>
+        </li>
+    </ul>
+</div>
+<div class="contentBody">
+    <div class="contentBodyHead">
+        <span style="font-size: 22px;">User details</span>
+        <br>
+        <span style="font-size: 11px;">Lists all user details</span>
+    </div>
+    <div class="contentBodyCntent">
+        <div class="form-group">
+            <div class="label-container">
+                <label>_id:</label>
+            </div>
+            <div class="info-container">{{user._id}}</div>
+        </div>
+        <div class="form-group">
+            <div class="label-container">
+                <label>Name:</label>
+            </div>
+            <div class="info-container">{{user.name}}</div>
+        </div>
+        <div class="form-group">
+            <div class="label-container">
+                <label>Username:</label>
+            </div>
+            <div class="info-container">{{user.username}}</div>
+        </div>
+        <div class="form-group">
+            <div class="label-container">
+                <label>Password:</label>
+            </div>
+            <div class="info-container">{{user.password}}</div>
+        </div>
+    </div>
+</div>

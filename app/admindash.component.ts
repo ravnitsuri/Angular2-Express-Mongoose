@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
-import {FormGroup, FormControl, Validators, FormBuilder, REACTIVE_FORM_DIRECTIVES} from '@angular/forms';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 @Component({
-	selector: 'home',
-	templateUrl: 'app/templates/home.component.html',
-	directives: [REACTIVE_FORM_DIRECTIVES]
+	selector: 'admindash',
+	templateUrl: 'app/templates/admindash.component.html',
+	styleUrls: ['app/css/admindash.component.css'],
+	directives: [ROUTER_DIRECTIVES]
 })
 
-export class HomeComponent implements OnInit {
-
+export class AdminDashboardComponent implements OnInit{ 
 	private users = [];
 	private options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' }) });
 
@@ -18,21 +18,12 @@ export class HomeComponent implements OnInit {
 
 	private infoMsg = { body: "", type: "info"};
 
-	private addUserForm: FormGroup;
-	private name = new FormControl("", Validators.required);
-	private username = new FormControl("", Validators.required);
-	private password = new FormControl("", Validators.required);
-
-	constructor(private http: Http, private formBuilder: FormBuilder) {	}
+	constructor(private http: Http, private _router: Router) {	}
 
 	ngOnInit() {
-		this.addUserForm = this.formBuilder.group({
-			name: this.name,
-			username: this.username,
-			password: this.password
-		});
 
-		this.loadUsers();
+			this.loadUsers();
+
 	}
 
 	loadUsers() {
@@ -48,19 +39,6 @@ export class HomeComponent implements OnInit {
 		this.infoMsg.body = body;
 		this.infoMsg.type = type;
 		window.setTimeout(() => this.infoMsg.body = "", time);
-	}
-
-	submitAdd() {
-		this.http.post("/user", JSON.stringify(this.addUserForm.value), this.options).subscribe(
-			res => {
-				this.users.push(res.json()); // the response contains the new item
-				this.sendInfoMsg("User added successfully.", "success");
-				// TODO: reset the form here
-			},
-			error => {
-				this.sendInfoMsg("User already exists.", "danger");
-			} 
-		);
 	}
 
 	enableEditing(user) {
@@ -97,6 +75,11 @@ export class HomeComponent implements OnInit {
 				error => console.log(error)
 			);
 		}
+	}
+
+	logout() {
+		localStorage.clear();
+		this._router.navigate(['/']);
 	}
 
 }

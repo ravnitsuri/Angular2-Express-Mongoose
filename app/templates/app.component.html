@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
 	<nav class="navbar navbar-dark bg-primary">
 	    <a class="navbar-brand" href="#"></a>
@@ -28,4 +28,21 @@
 	    </ul>
 	</nav>
 
+</div> -->
+<style type="text/css">
+	.mainBackground{
+		/*background-image: url("./app/images/background-1.jpg");*/
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		overflow:hidden;
+		background: #F1F1F1;
+		/*z-index:-1;*/
+	}
+</style>
+
+<div class="mainBackground">
+	<router-outlet></router-outlet>
 </div>

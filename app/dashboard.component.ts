@@ -1,26 +1,27 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 @Component({
 	selector: 'dashboard',
-	templateUrl: 'app/dashboard.component.html',
+	templateUrl: 'app/templates/dashboard.component.html',
+	styleUrls: ['app/css/admindash.component.css'],
 	directives: [ROUTER_DIRECTIVES]
 })
 
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
 	private user = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : {_id: "" , name:"" , username: "", password: ""};
 
 	constructor(private _router: Router) {	}
 
-	onBack() {
-		console.log("Going back in time")
-		window.history.back();
+	ngOnInit() {
 
-		localStorage.removeItem('user') ;
-		this._router.navigate(['/signin']);
 
 	}
 
+	logout() {
+		localStorage.clear();
+		this._router.navigate(['/']);
+	}
 }

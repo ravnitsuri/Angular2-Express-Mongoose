@@ -1,0 +1,47 @@
+	.signupBackground {
+		background-image: url("./app/images/background-1.jpg");
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		overflow:hidden;
+		/*z-index:-1;*/
+	}	
+	.signupContainer {
+		width: 30%;
+		margin: 5% auto;
+		background-color: rgba(0, 0, 0, 0.81);
+		padding: 2% 0 0 0 ;
+	}
+	.signupGroup {
+		padding: 35px 27px 75px;
+    	color: white;
+	}
+	.left {
+		float: left;
+		margin-top: 2%;
+	}
+	.right {
+		float: right;
+		margin-top: 1%;
+		margin-right: 0%;
+	}
+	.right button {
+		width: 85px;
+	    height: 36px;
+	    text-align: center;
+	}
+	.signuplogo { 
+		margin: 0 auto; 
+		padding: 5%;
+		/*border: 2px solid yellow;*/
+		width:90%;
+
+		background: rgba(255, 255, 255, 0.16);
+	}
+	.logoImage {
+		width: 250px;
+		margin: 0 auto;
+		/*border: 2px solid green;*/
+	}

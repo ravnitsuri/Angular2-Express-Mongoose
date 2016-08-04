@@ -1,29 +1,37 @@
 import {Component} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+// import {TimerWrapper} from '@angular/core/src/facade/async';
 
 @Component({
-	selector: 'signin',
-	templateUrl: 'app/templates/signin.component.html',
-	directives: [ROUTER_DIRECTIVES]
+	selector: 'login',
+	templateUrl: 'app/templates/login.component.html',
+	styleUrls: ['app/css/login.component.css'],
+	directives: [ROUTER_DIRECTIVES],
 })
 
-export class SigninComponent { 
+export class LoginComponent {
 
 	private user = {};
 	private options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' }) });
 	private infoMsg = { body: "", type: "info"};
 
-	constructor(private http: Http , private _router: Router) {	}
+	constructor(private http: Http , private _router: Router) {
+
+
+	}
 
 	formSubmit() {
 		this.http.post('/login', JSON.stringify(this.user) , this.options).subscribe(
 			res => {
 				if (res.json() != null) {
-					this.sendInfoMsg("User exists. Redirecting.", "success");
-					console.log("User exists! Yaaay!");
 					localStorage.setItem('user', JSON.stringify(res.json())) ;
-					this._router.navigate(['/dashboard']);
+					if (res.json().type == 1) {
+						this._router.navigate(['/admindashboard']);
+					}
+					if (res.json().type == 2) {
+						this._router.navigate(['/dashboard']);
+					}
 				} 
 			},
 			error => {
@@ -46,5 +54,7 @@ export class SigninComponent {
 		this.infoMsg.type = type;
 		window.setTimeout(() => this.infoMsg.body = "", time);
 	}
+
+
 
 }
