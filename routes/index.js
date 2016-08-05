@@ -17,7 +17,7 @@ var User = mongoose.model('User', userSchema);
 
 // select all
 router.get('/users', function(req, res) {
-    User.find({}, function(err, docs) {
+    User.find({type: 2}, function(err, docs) {
         if(err) return console.error(err);
         res.json(docs);
     });

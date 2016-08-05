@@ -1,5 +1,6 @@
 	.loginBackground {
-		background-image: url("./app/images/background-1.jpg");
+		/*background-image: url("./app/images/background-1.jpg");*/
+		background: #F1F1F1;
 		position:absolute;
 		top:0;
 		bottom:0;
@@ -9,14 +10,16 @@
 		/*z-index:-1;*/
 	}	
 	.loginContainer {
-		width: 30%;
+		/*width: 30%;*/
 		margin: 5% auto;
-		background-color: rgba(0, 0, 0, 0.81);
+		/*background-color: rgba(0, 0, 0, 0.81);*/
+		background: #FAFAFA;
+		box-shadow: 5px 5px 20px #888888;
 		padding: 2% 0 0 0 ;
 	}
 	.loginGroup {
 		padding: 35px 27px 75px;
-    	color: white;
+    	color: black;
 	}
 	.left {
 		float: left;
@@ -28,8 +31,8 @@
 		margin-right: 0%;
 	}
 	.right button {
-		width: 85px;
-	    height: 36px;
+		/*width: 85px;*/
+	    /*height: 36px;*/
 	    text-align: center;
 	}
 	.loginlogo { 
@@ -38,7 +41,7 @@
 		/*border: 2px solid yellow;*/
 		width:90%;
 
-		background: rgba(255, 255, 255, 0.16);
+		background: rgba(48, 54, 65, 0.17);
 	}
 	.logoImage {
 		width: 250px;

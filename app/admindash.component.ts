@@ -15,6 +15,7 @@ export class AdminDashboardComponent implements OnInit{
 
 	private isEditing = false;
 	private user = {};
+	private usermodel = {};
 
 	private infoMsg = { body: "", type: "info"};
 
@@ -49,7 +50,7 @@ export class AdminDashboardComponent implements OnInit{
 	cancelEditing() {
 		this.isEditing = false;
 		this.user = {};
-		this.sendInfoMsg("item editing cancelled.", "warning");
+		this.sendInfoMsg("Item editing cancelled.", "warning");
 		this.loadUsers();
 	}
 
@@ -58,7 +59,7 @@ export class AdminDashboardComponent implements OnInit{
 			res => {
 				this.isEditing = false;
 				this.user = user;
-				this.sendInfoMsg("item edited successfully.", "success");
+				this.sendInfoMsg("Item edited successfully.", "success");
 			},
 			error => console.log(error)
 		);
@@ -80,6 +81,21 @@ export class AdminDashboardComponent implements OnInit{
 	logout() {
 		localStorage.clear();
 		this._router.navigate(['/']);
+	}
+
+	submitAdd() {
+		this.http.post("/user", JSON.stringify(this.usermodel), this.options).subscribe(
+			res => {
+				// this.users.push(res.json()); // the response contains the new item
+				this.sendInfoMsg("User added successfully.", "success");
+				this.loadUsers();
+				// this._router.navigate(['/admindashboard']);
+				// TODO: reset the form here
+			},
+			error => {
+				this.sendInfoMsg("User already exists.", "danger");
+			} 
+		);
 	}
 
 }

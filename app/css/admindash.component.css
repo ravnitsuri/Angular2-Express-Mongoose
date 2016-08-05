@@ -5,11 +5,12 @@
 .header{
 	float:left;
 	width: 100%;
-	height:100px;
+	/*height:100px;*/
 	/*background-image: url("./app/images/background-1.jpg");*/
 	background: #303641;
 	/*border-bottom: 3px solid #D92029;*/
 	border-bottom: 3px solid #1F242C;
+	padding-bottom: 20px;
 }
 
 
@@ -92,9 +93,14 @@ ul.header-list li:hover a::before{
 	margin: 130px auto 20px;
 	padding: 20px;
 	/*font-family: 'Droid Sans', sans-serif;*/
+	box-shadow: 5px 5px 20px #888888;
 }
 
 .contentBodyHead {
 	padding: 0 0 15px 0;
 	font-family: 'Droid Sans', sans-serif;
+}
+
+.myalert {
+	width: 60%; float:right; font-family: 'Droid Sans', sans-serif; font-size: 12px;
 }

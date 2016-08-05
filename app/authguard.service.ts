@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
 
 			if (state.url != '/' && state.url != "/signup") {
 				this._router.navigate(['/']);
-				console.log("case 1")
+				// console.log("case 1")
 				return false;
 			}
 		}
@@ -28,12 +28,12 @@ export class AuthGuard implements CanActivate {
 		if ( localStorage.getItem('user') && (state.url == "/" || state.url == "/signup" ) ) {
 
 			if (JSON.parse(localStorage.getItem('user')).type == 1) {
-				console.log("case 2")
+				// console.log("case 2")
 				this._router.navigate(['/admindashboard']);
 				return false;
 			}
 			if (JSON.parse(localStorage.getItem('user')).type == 2){
-				console.log("case 3")
+				// console.log("case 3")
 				this._router.navigate(['/dashboard']);
 				return false;
 			}
@@ -41,19 +41,19 @@ export class AuthGuard implements CanActivate {
 		}
 
 		if (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).type != 1 && state.url == "/admindashboard") {
-			console.log("case 4")
+			// console.log("case 4")
 			this._router.navigate(['/dashboard']);
 			return false;
 		}
 
 		if (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).type == 1 && state.url == "/dashboard") {
-			console.log("case 5")
+			// console.log("case 5")
 			this._router.navigate(['/admindashboard']);
 			return false;
 		}
 
 		else {
-			console.log("case 6")
+			// console.log("case 6")
 			return true;
 		}
 
