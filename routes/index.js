@@ -1,4 +1,5 @@
 var express = require('express');
+var uniqueValidator = require('mongoose-unique-validator');
 var router = express.Router();
 
 var mongoose = require('mongoose');
@@ -6,19 +7,21 @@ var db = mongoose.connection;
 
 var userSchema = mongoose.Schema({
     name: {type: String, required: true},
-    username: {type: String , required: true},
+    username: {type: String , required: true,  unique: true},
     password: {type: String , required: true},
     type: {type: Number , default: 2}
 });
 var User = mongoose.model('User', userSchema);
 
-
+userSchema.plugin(uniqueValidator, {
+  message: "Username already exists."
+});
 
 
 // select all
 router.get('/users', function(req, res) {
     User.find({type: 2}, function(err, docs) {
-        if(err) return console.error(err);
+        if(err) return res.status(400).send(err);
         res.json(docs);
     });
 });
@@ -26,7 +29,7 @@ router.get('/users', function(req, res) {
 // count all
 router.get('/users/count', function(req, res) {
     User.count(function(err, count) {
-        if(err) return console.error(err);
+        if(err) return res.status(400).send(err);
         res.json(count);
     });
 });
@@ -38,14 +41,14 @@ router.post('/user', function(req, res) {
 
     User.find({username: username} , function(err, data){
         if (err) {
-            return console.error (err)
+            return res.status(400).send (err)
         } 
         if (data.length) {
             return res.status(400).send("Username already exists");
         } else {
             var obj = new User(req.body);
             obj.save(function(err, obj) {
-                if(err) return console.error(err);
+                if(err) return res.status(400).send(err);
                 res.status(200).json(obj);
             });
         }
@@ -77,7 +80,7 @@ router.post('/login', function(req,res){
 // find by id
 router.get('/user/:id', function(req, res) {
     User.findOne({_id: req.params.id}, function (err, obj) {
-        if(err) return console.error(err);
+        if(err) return res.status(400).send(err);
         res.json(obj);
     })
 });
@@ -85,7 +88,7 @@ router.get('/user/:id', function(req, res) {
 // update by id
 router.put('/user/:id', function(req, res) {
     User.findOneAndUpdate({_id: req.params.id}, req.body, function (err) {
-        if(err) return console.error(err);
+        if(err) return res.status(400).send(err);
         res.sendStatus(200);
     })
 });
@@ -93,7 +96,7 @@ router.put('/user/:id', function(req, res) {
 // delete by id
 router.delete('/user/:id', function(req, res) {
     User.findOneAndRemove({_id: req.params.id}, function(err) {
-        if(err) return console.error(err);
+        if(err) return res.status(400).send(err);
         res.sendStatus(200);
     });
 });

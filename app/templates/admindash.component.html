@@ -16,13 +16,13 @@
 <div class="contentBody">
     <!-- CONTENT GOES HERE -->
     <div class="contentBodyHead">
-        <div style="float:left">
+        <div style="float:left; padding-bottom: 15px;">
         <span style="font-size: 22px;">User listing</span>
         <br>
         <span style="font-size: 11px;">Lists all users with their usernames and passwords</span>
         </div>
         <div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible myalert" role="alert">
-        <!-- <div class="alert alert-danger alert-dismissible" role="alert" style=""> -->
+        <!-- <div class="alert alert-{{infoMsg.type}} alert-dismissible myalert" role="alert"> -->
             <strong>Message:</strong> {{infoMsg.body}}
         </div>
     </div>
@@ -85,13 +85,13 @@
     <div class="contentBodyContent">
         <form class="form-inline" #heroForm="ngForm" (ngSubmit)="submitAdd()">
             <div class="form-group" style="width: 25%">
+                <input class="form-control" type="text" name="name" [(ngModel)]="usermodel.name" placeholder="Name">
+            </div>
+            <div class="form-group" style="width: 25%">
                 <input class="form-control" type="text" name="username" [(ngModel)]="usermodel.username" placeholder="Username">
             </div>
             <div class="form-group" style="width: 25%">
                 <input class="form-control" type="password" name="password" [(ngModel)]="usermodel.password" placeholder="Password">
-            </div>
-            <div class="form-group" style="width: 25%">
-                <input class="form-control" type="text" name="name" [(ngModel)]="usermodel.name" placeholder="Name">
             </div>
             <div class="form-group" style="width: 20%">
                 <button class="btn btn-primary" type="submit" [disabled]="!heroForm.form.valid">Add</button>

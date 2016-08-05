@@ -32,17 +32,21 @@
 <style type="text/css">
 	.mainBackground{
 		/*background-image: url("./app/images/background-1.jpg");*/
-		position:absolute;
+/*		position:absolute;
 		top:0;
 		bottom:0;
 		left:0;
-		right:0;
+		right:0;*/
+		margin: 0; padding: 0;
+
+		border-top: 1px solid black;
+		/*width: 100% !important;*/
 		/*overflow:hidden;*/
-		background: #F1F1F1;
+		/*background: #F1F1F1;*/
 		/*z-index:-1;*/
 	}
 </style>
 
-<div class="mainBackground">
+<div class="container-fluid mainBackground">
 	<router-outlet></router-outlet>
 </div>

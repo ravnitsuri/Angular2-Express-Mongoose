@@ -36,7 +36,7 @@ export class AdminDashboardComponent implements OnInit{
 			);
 	}
 
-	sendInfoMsg(body, type, time = 3000) {
+	sendInfoMsg(body, type, time = 5000) {
 		this.infoMsg.body = body;
 		this.infoMsg.type = type;
 		window.setTimeout(() => this.infoMsg.body = "", time);
@@ -50,7 +50,7 @@ export class AdminDashboardComponent implements OnInit{
 	cancelEditing() {
 		this.isEditing = false;
 		this.user = {};
-		this.sendInfoMsg("Item editing cancelled.", "warning");
+		this.sendInfoMsg("User editing cancelled.", "warning");
 		this.loadUsers();
 	}
 
@@ -59,9 +59,14 @@ export class AdminDashboardComponent implements OnInit{
 			res => {
 				this.isEditing = false;
 				this.user = user;
-				this.sendInfoMsg("Item edited successfully.", "success");
+				this.sendInfoMsg("User edited successfully.", "success");
 			},
-			error => console.log(error)
+			error => {
+				this.isEditing = false;
+				this.user = {};
+				this.sendInfoMsg("Username already exists.", "danger");
+				this.loadUsers();
+			}
 		);
 	}
 
@@ -86,14 +91,12 @@ export class AdminDashboardComponent implements OnInit{
 	submitAdd() {
 		this.http.post("/user", JSON.stringify(this.usermodel), this.options).subscribe(
 			res => {
-				// this.users.push(res.json()); // the response contains the new item
+				this.usermodel = {};
 				this.sendInfoMsg("User added successfully.", "success");
 				this.loadUsers();
-				// this._router.navigate(['/admindashboard']);
-				// TODO: reset the form here
 			},
 			error => {
-				this.sendInfoMsg("User already exists.", "danger");
+				this.sendInfoMsg("Username already exists.", "danger");
 			} 
 		);
 	}
