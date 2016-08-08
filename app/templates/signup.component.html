@@ -8,8 +8,8 @@
                     <div class="logoImage"><img src="./app/images/logo.png" width="250px" height="69px"></div>
                 </div>
                 <div class="signupGroup">
-                    <div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
-                        <strong>Message:</strong> {{infoMsg.body}}
+                    <div [hidden]="!infoMsg.body" style="font-size: 12px;" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
+                        {{infoMsg.body}}
                     </div>
                     <form #heroForm="ngForm" (ngSubmit)="submitAdd()">
                         <div class="form-group">

@@ -105,12 +105,12 @@ ul.header-list li:hover a::before{
 	width: 60%; float:right; font-family: 'Droid Sans', sans-serif; font-size: 12px;
 }
 
-.ng-valid[required] {
-  border-left: 5px solid #42A948; /* green */
-  /*border: 1px solid #ccc;*/
-}
+	.ng-valid[required] {
+	  border-left: 5px solid #42A948; /* green */
+	  /*border: 1px solid #ccc;*/
+	}
 
-.ng-invalid {
-  border-left: 5px solid #a94442; /* red */
-  box-shadow: none;
-}
+	.ng-invalid {
+	  border-left: 5px solid rgba(217, 32, 41, 0.8); /* red */
+	  box-shadow: none;
+	}

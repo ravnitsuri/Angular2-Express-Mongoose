@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {TimerWrapper} from '@angular/core/src/facade/async';
 
 @Component({
 	selector: 'admindash',
@@ -39,7 +40,11 @@ export class AdminDashboardComponent implements OnInit{
 	sendInfoMsg(body, type, time = 5000) {
 		this.infoMsg.body = body;
 		this.infoMsg.type = type;
-		window.setTimeout(() => this.infoMsg.body = "", time);
+
+		TimerWrapper.setTimeout(() => {  
+			this.infoMsg.body = ""
+		}, time);
+
 	}
 
 	enableEditing(user) {
@@ -51,7 +56,7 @@ export class AdminDashboardComponent implements OnInit{
 		this.isEditing = false;
 		this.user = {};
 		this.sendInfoMsg("User editing cancelled.", "warning");
-		this.loadUsers();
+		// this.loadUsers();
 	}
 
 	submitEdit(user) {

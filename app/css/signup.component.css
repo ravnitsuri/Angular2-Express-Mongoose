@@ -55,6 +55,6 @@
 	}
 
 	.ng-invalid {
-	  border-left: 5px solid #a94442; /* red */
+	  border-left: 5px solid rgba(217, 32, 41, 0.8); /* red */
 	  box-shadow: none;
 	}

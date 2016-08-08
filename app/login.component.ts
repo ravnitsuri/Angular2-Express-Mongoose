@@ -52,7 +52,7 @@ export class LoginComponent {
 	sendInfoMsg(body, type, time = 3000) {
 		this.infoMsg.body = body;
 		this.infoMsg.type = type;
-		window.setTimeout(() => this.infoMsg.body = "", time);
+		// window.setTimeout(() => this.infoMsg.body = "", time);
 	}
 
 

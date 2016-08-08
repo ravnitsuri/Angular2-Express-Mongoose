@@ -12,8 +12,8 @@
                 </div>
                 <div class="loginGroup">
                     <form #heroForm="ngForm" (ngSubmit)="formSubmit()">
-                        <div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
-                            <strong>Message:</strong> {{infoMsg.body}}
+                        <div [hidden]="!infoMsg.body" style="font-size: 12px;" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
+                            {{infoMsg.body}}
                         </div>
                         <div class="form-group">
                             <label>Login</label>
