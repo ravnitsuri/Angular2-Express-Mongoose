@@ -32,7 +32,7 @@
                 <thead class="thead-default">
                     <tr>
                         <th style="width: 25%;">Name</th>
-                        <th style="width: 25%;">Username*</th>
+                        <th style="width: 25%;">Username<div *ngIf="isEditing" style="display: inline-block;">*</div></th>
                         <th style="width: 25%;">Password</th>
                         <th style="width: 25%;">Actions</th>
                     </tr>
@@ -48,27 +48,34 @@
                         <td style="width: 25%;">{{user.username}}</td>
                         <td style="width: 25%;">{{user.password}}</td>
                         <td style="width: 25%;">
-                            <button class="btn btn-sm btn-warning" (click)="enableEditing(user)"><i class="fa fa-pencil"></i> Edit</button>
-                            <button class="btn btn-sm btn-danger" (click)="submitRemove(user)"><i class="fa fa-trash"></i> Delete</button>
+                            <button class="btn btn-sm btn-warning" (click)="enableEditing(user)" style="width: 49%"><i class="fa fa-pencil"></i> Edit</button>
+                            <button class="btn btn-sm btn-danger" (click)="submitRemove(user)" style="width: 49%"><i class="fa fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                 </tbody>
                 <tbody *ngIf="isEditing">
                     <tr>
                         <td colspan="4">
-                            <form class="form-inline" #form="ngForm" (ngSubmit)="submitEdit(user)" style="display:inline">
-                                <div class="form-group" style="width: 25%;">
+                            <form class="form-inline" #form="ngForm" (ngSubmit)="submitEdit(user)" >
+                                <div class="form-group" style="width: 24.5%;">
                                     <input class="form-control" type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required>
                                 </div>
-                                <div class="form-group" style="width: 25%;">
+                                <div class="form-group" style="width: 24.5%;">
                                     <input class="form-control" type="text" name="uname" [(ngModel)]="user.username" placeholder="Username" required>
                                 </div>
-                                <div class="form-group" style="width: 25%;">
-                                    <input class="form-control" type="text" name="pwd" [(ngModel)]="user.password" placeholder="Weight" required>
+                                <div class="form-group" style="width: 24.5%;">
+                                    <input class="form-control" type="text" name="pwd" [(ngModel)]="user.password" placeholder="Password" required>
                                 </div>
-                                <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+                                <div class="form-group" style="width: 24.5%;">
+                                    <button class="btn btn-sm btn-primary" type="submit" style="width: 49%;" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+                                    <button class="btn btn-sm btn-warning" style="width: 49%;" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+                                </div>
                             </form>
-                            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            * - Username needs to be unique
                         </td>
                     </tr>
                 </tbody>
@@ -76,6 +83,7 @@
         </div>
     </div>
 </div>
+
 <div class="contentBody" style="margin-top: 40px;" *ngIf="!isEditing">
     <div class="contentBodyHead">
         <span style="font-size: 22px;">Add User</span>
@@ -84,17 +92,17 @@
     </div>
     <div class="contentBodyContent">
         <form class="form-inline" #heroForm="ngForm" (ngSubmit)="submitAdd()">
-            <div class="form-group" style="width: 25%">
-                <input class="form-control" type="text" name="name" [(ngModel)]="usermodel.name" placeholder="Name">
+            <div class="form-group" style="width: 24%; margin-left: 1.25%;">
+                <input class="form-control" type="text" name="name" [(ngModel)]="usermodel.name" placeholder="Name" #name="ngModel" required>
             </div>
-            <div class="form-group" style="width: 25%">
-                <input class="form-control" type="text" name="username" [(ngModel)]="usermodel.username" placeholder="Username">
+            <div class="form-group" style="width: 24%">
+                <input class="form-control" type="text" name="username" [(ngModel)]="usermodel.username" placeholder="Username" required>
             </div>
-            <div class="form-group" style="width: 25%">
-                <input class="form-control" type="password" name="password" [(ngModel)]="usermodel.password" placeholder="Password">
+            <div class="form-group" style="width: 24%">
+                <input class="form-control" type="password" name="password" [(ngModel)]="usermodel.password" placeholder="Password" required>
             </div>
-            <div class="form-group" style="width: 20%">
-                <button class="btn btn-primary" type="submit" [disabled]="!heroForm.form.valid">Add</button>
+            <div class="form-group" style="width: 24%">
+                <button class="btn btn-primary btn-block" type="submit" [disabled]="!heroForm.form.valid">Add</button>
             </div>
         </form>
     </div>

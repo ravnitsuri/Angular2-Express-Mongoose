@@ -59,7 +59,6 @@ router.post('/user', function(req, res) {
 
 // login user
 router.post('/login', function(req,res){
-    console.log("req.body" , req.body)
     // var user = JSON.parse(req.body);
     User.findOne({username: req.body.username} , function(err, data) {
         if (err) return res.status(500).send("Error finding user")
@@ -100,11 +99,5 @@ router.delete('/user/:id', function(req, res) {
         res.sendStatus(200);
     });
 });
-
-
-// all other routes are handled by Angular
-// router.get('/*', function(req, res) {
-//     res.sendFile(__dirname + '/public/index.html');
-// });
 
 module.exports = router;

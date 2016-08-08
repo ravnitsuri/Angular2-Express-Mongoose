@@ -104,3 +104,13 @@ ul.header-list li:hover a::before{
 .myalert {
 	width: 60%; float:right; font-family: 'Droid Sans', sans-serif; font-size: 12px;
 }
+
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+  /*border: 1px solid #ccc;*/
+}
+
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+  box-shadow: none;
+}
